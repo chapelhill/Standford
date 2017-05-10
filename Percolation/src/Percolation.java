@@ -1,12 +1,12 @@
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
-	WeightedQuickUnionUF UF;
-	int virtualtop;
-	int virtualbottom;
-	int n;
+	private WeightedQuickUnionUF UF;
+	private int virtualtop;
+	private int virtualbottom;
+	private int n;
 	private boolean[][] grid;
-	
+	private int numberofopensites = 0;
 
 	public Percolation(int n) {
 		this.n = n;
@@ -23,7 +23,7 @@ public class Percolation {
 		int index = convert(row, col);
 		if (!isOpen(row, col)) {
 			grid[row - 1][col - 1] = true;
-		
+			numberofopensites++;
 			  if (row == 1) {
 		            UF.union(index, virtualtop);
 		        }
@@ -84,7 +84,7 @@ public class Percolation {
 	}
 
 	public int numberOfOpenSites() {
-		return UF.count();
+		return numberofopensites;
 		// number of open sites
 	}
 
@@ -93,7 +93,7 @@ public class Percolation {
 		// does the system percolate?
 	}
 
-	public int convert(int row, int col) {
+	private int convert(int row, int col) {
 		return n * (row - 1) + (col - 1);
 
 	}
