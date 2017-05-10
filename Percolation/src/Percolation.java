@@ -15,12 +15,7 @@ public class Percolation {
 		this.grid = new boolean[n][n];
 		virtualtop = n * n;
 		virtualbottom = n * n + 1;
-		for (int j = 1; j <= n; j++) {
-			UF.union(convert(1, j), virtualtop);
-		}
-		for (int j = 1; j <= n; j++) {
-			UF.union(virtualbottom, convert(n, j));
-		}
+
 	}
 
 	public void open(int row, int col) {
@@ -30,6 +25,13 @@ public class Percolation {
 		if (!isOpen(row, col)) {
 			grid[row - 1][col - 1] = true;
 			hasopen = true;
+			  if (row == 1) {
+		            UF.union(index, virtualtop);
+		        }
+		       if (col == n) {
+		            UF.union(index, virtualbottom);
+		        }
+
 
 			// top
 			int newrow = row - 1;
