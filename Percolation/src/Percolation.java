@@ -1,4 +1,3 @@
-
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
@@ -7,7 +6,7 @@ public class Percolation {
 	int virtualbottom;
 	int n;
 	private boolean[][] grid;
-	boolean hasopen = false;
+	
 
 	public Percolation(int n) {
 		this.n = n;
@@ -24,11 +23,11 @@ public class Percolation {
 		int index = convert(row, col);
 		if (!isOpen(row, col)) {
 			grid[row - 1][col - 1] = true;
-			hasopen = true;
+		
 			  if (row == 1) {
 		            UF.union(index, virtualtop);
 		        }
-		       if (col == n) {
+		       if (row == n) {
 		            UF.union(index, virtualbottom);
 		        }
 
@@ -90,7 +89,7 @@ public class Percolation {
 	}
 
 	public boolean percolates() {
-		return hasopen && UF.connected(virtualtop, virtualbottom);
+		return  UF.connected(virtualtop, virtualbottom);
 		// does the system percolate?
 	}
 
